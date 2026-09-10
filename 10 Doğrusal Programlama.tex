@@ -1,0 +1,83 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[turkish, shorthands = :!]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{fancyhdr, lipsum, mathtools}
+
+\renewcommand{\headrulewidth}{0 pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\thepage}
+
+\begin{document}
+
+%%%%%%% SAYFA 1 %%%%%%%
+
+\lipsum[1][1-3]
+% burada asla boşluk olmamalı
+\begin{align*}
+\text{büyüt} \quad % amsmath paketi yüklüyken \textrm yerine \text diyebiliyoruz
+	& 2 x_1 + 3 x_2 \\
+\text{öyle ki} \quad
+	& x_1 + x_2 \leq 2 \\
+	& 4 x_1 + 6 x_2 \leq 9 \\
+	& x_1, x_2 \geq 0 % buraya \\ işareti konmamalı
+\end{align*}
+% eğer paragraf devam ediyorsa burada da boşluk olmamalı
+\lipsum[1][4-5]
+
+\bigskip
+\hrule
+\bigskip
+
+% alignat'in align'dan temel farkı, rl sütunlarının sayısının parametre olarak girilme zorunluluğu yanında, bu sütun çiftleri arasında boşluk olmaması (biz özellikle koymadıkça)
+
+\lipsum[1][1-3]
+\begin{alignat*}{1}
+\text{büyüt} \quad
+	& 2 x_1 + 3 x_2 \\
+\text{öyle ki} \quad
+	& x_1 + x_2 \leq 2 \\
+	& 4 x_1 + 6 x_2 \leq 9 \\
+	& x_1, x_2 \geq 0  % buraya \\ işareti konmamalı
+\end{alignat*}
+\lipsum[1][4-5]
+
+\bigskip
+\hrule
+\bigskip
+
+\lipsum[1][1-3]
+\begin{alignat*}{2}
+\text{küçült} \quad
+	& \sum_{i, j} w_{ij} x_{ij} \\
+\text{öyle ki} \quad
+	& \sum_j x_{ij} = 1	&\quad&	\text{her $i$ için} \\
+	& \sum_i x_{ij} = 1 && 		\text{her $j$ için} \\
+	& x_{ij} \geq 0		&& 		\text{her $i, j$ için}
+\end{alignat*}
+\lipsum[1][4-5]
+
+\newpage
+
+%%%%%%% SAYFA 2 %%%%%%%
+
+\lipsum[1][1-3]% bu yüzde işareti tam burada olmalı, yoksa fazladan dikey boşluk oluşuyor
+\begin{subequations} \label{eq:TAP}
+\begin{alignat}{2}				
+\text{TAP: \quad max \quad}
+	& \sum_i c_i \left(\frac{\sum_j a_{ij} b_j x_{ij}}{\sum_j b_j x_{ij}}\right)	\label{eq:TAPobj} \\
+\text{s.t. \quad}
+	& \sum_i x_{ij} = 1				     			&\quad& \text{for all $j$}	\label{eq:TAPhard} \\
+	& \mu - d \leq \sum_j b_j x_{ij} \leq \mu + d	&&		\text{for all $i$} 	\label{eq:TAPdev} \\
+	& x_{ij} \in \{0,  1\}							&& 		\text{for all $i, j$}	\label{eq:TAPvar}
+\end{alignat}
+\end{subequations}
+\lipsum[1][4-5]
+
+Problem~\eqref{eq:TAP}... Constraint~\eqref{eq:TAPdev}...
+
+\end{document}

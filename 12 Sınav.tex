@@ -1,0 +1,285 @@
+% Ders Kodu ve Adı (Dönem) [END 418 Stokastik Süreçler (2025 Bahar)]
+% Bölüm [İMÜ MDBF Endüstri Mühendisliği Bölümü]
+
+\documentclass[12 pt]{exam}
+
+% ders, sınav, tarih, zaman, süre (dakika cinsinden)
+\newcommand{\course}{Ders Kodu ve Adı} % [END 418 Stokastik Süreçler]
+\newcommand{\exam}{SINAV ÇEŞİDİ \\ Klasik Kısım} % iki kısımdan oluşan sınavlarda klasik kısmın başlığı
+%\newcommand{\exam}{SINAV ÇEŞİDİ \\ Bilgisayarlı Kısım} % iki kısımdan oluşan sınavlarda bilgisayarlı kısmın başlığı
+%\newcommand{\exam}{\Large{SINAV ÇEŞİDİ}} % tek kısımdan oluşan sınavlarda başlık [ARA SINAV, FİNAL, BÜTÜNLEME, TEK DERS SINAVI]
+%\newcommand{\exam}{MAZERET \\ ARA SINAVI} % tek kısımdan oluşan mazeret ara sınavı başlığı
+\newcommand{\examdate}{Tarih} % [7 Mart 2025]
+\newcommand{\examtime}{Saat} % [9.00] (\time komutunu yeniden tanımlayarak [yani \renewcommand{\time}{**.**} diyerek] devam edersek tikz paketini kullanırken hata veriyor, o yüzden \date ve \time komutlarını yeniden tanımlamak yerine yeni \examdate ve \examtime komutlarını kullanıyoruz)
+\newcommand{\duration}{0} % [50]
+\newcommand{\type}{Grup} % [A, B]
+
+\printanswers % cevapları yazdırmak için (varsayılan yazdırmamak)
+
+\usepackage[utf8]{inputenc}
+\usepackage[turkish, shorthands = :!]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% sayfa kenar boşluklarını 1 cm'ye çekmek için (kenar boşluklarını geometry paketini kullanarak 1 cm yapacak olursak sayfa numaraları görünmüyor, görünmesi için boşluk biraz daha büyük olmalı)
+\extrawidth{3.08 cm}
+\extraheadheight{-1.54 cm}
+\extrafootheight{-1.54 cm}
+
+% ondalıkları virgül, binleri nokta ile ayırabilmek ve birimli sayıları düzgün bir biçimde yazabilmek için
+\usepackage{siunitx}
+\sisetup{output-decimal-marker = {,}}
+\sisetup{group-separator = {.}}
+\sisetup{group-minimum-digits = 4}
+
+\usepackage{mathtools, lipsum}
+
+\usepackage{graphicx}
+\graphicspath{{./auxiliary/}}
+
+% cevap anahtarının varsayılan doğru cevap gösterimi matematiksel cevapları kalınlaştırmadığı için doğru cevapları renklendirmek istersek
+\usepackage[dvipsnames]{xcolor}
+\CorrectChoiceEmphasis{\color{Green}}
+
+% "points" yerine "puan" yazdırmak için
+\pointname{\ puan}
+
+% "solution" yerine "cevap" yazdırmak için
+\renewcommand{\solutiontitle}{\noindent\textbf{Cevap:}\enspace}
+
+% doğru-yanlış soruları için
+\newcommand{\tf}[1][{}]{%
+\fillin[#1][0.75 cm]%
+}
+
+% sayfa numaralarını ve grubu yazdırmak için
+\pagestyle{foot}
+\footer{}{\footnotesize\thepage/\numpages}{\footnotesize\type}
+
+\begin{document}
+
+\noindent
+\begin{minipage}{0.35\textwidth}
+\ifprintanswers
+\itshape
+\Large{Cevap Anahtarı}
+\else
+Ad Soyadı: \\ % sınav kâğıdında bölüm bilgisi istenmiyorsa (varsayılan)
+Öğrenci Numarası: % sınav kâğıdında bölüm bilgisi istenmiyorsa (varsayılan)
+%Öğrenci Numarası: \\ % sınav kâğıdında bölüm bilgisi isteniyorsa
+%Bölüm: % sınav kâğıdında bölüm bilgisi isteniyorsa
+\fi
+\end{minipage}%
+%
+\begin{minipage}{0.30\textwidth}
+\bfseries
+\begin{center}
+\exam
+\end{center}
+\end{minipage}%
+%
+\begin{minipage}{0.35\textwidth}
+\begin{flushright}
+\course \\ % sınav kâğıdında bölüm bilgisi istenmiyorsa (varsayılan)
+%Dersin Kodu \\ % sınav kâğıdında bölüm bilgisi isteniyorsa
+%Dersin Adı \\ % sınav kâğıdında bölüm bilgisi isteniyorsa
+\examdate\ • \examtime\ • \qty{\duration}{dk}.
+\end{flushright}
+\end{minipage}
+
+\smallskip
+
+\hrule
+
+\medskip
+
+\begingroup
+\noindent
+\footnotesize
+\textit{% klasik sınavla ilgili açıklamalar (ara sınav, mazeret ara sınavı)
+Sınav çoktan seçmeli sorulardan oluşmaktadır. Her sorunun tek bir doğru cevabı vardır. Yanlış doğruyu götürmeyecektir. Bir soru için birden çok şık işaretlenmemelidir, aksi hâlde o soruya cevap verilmemiş sayılır. Sınava arkalı önlü bir A4 çalışma kâğıdı ile girilebilir, bunun dışında herhangi bir kaynaktan yararlanmak yasaktır. Bilimsel hesap makinesi kullanılabilir; cep telefonu, akıllı saat vb. cihazlar kullanılamaz.
+}
+%\textit{% klasik sınavla ilgili açıklamalar (final, bütünleme, tek ders)
+%Sınav çoktan seçmeli sorulardan oluşmaktadır. Her sorunun tek bir doğru cevabı vardır. Yanlış doğruyu götürmeyecektir. Bir soru için birden çok şık işaretlenmemelidir, aksi hâlde o soruya cevap verilmemiş sayılır. Sınava arkalı önlü iki A4 çalışma kâğıdı ile girilebilir, bunun dışında herhangi bir kaynaktan yararlanmak yasaktır. Bilimsel hesap makinesi kullanılabilir; cep telefonu, akıllı saat vb. cihazlar kullanılamaz.
+%}
+%\textit{% bilgisayarlı sınavla ilgili açıklamalar
+%Sınav çoktan seçmeli sorulardan oluşmaktadır. Her sorunun tek bir doğru cevabı vardır. Yanlış doğruyu götürmeyecektir. Bir soru için birden çok şık işaretlenmemelidir, aksi hâlde o soruya cevap verilmemiş sayılır. Bilgisayar sınav boyunca uçak modunda tutulmalıdır. Sınav öncesinde bilgisayara yüklenen her türlü kaynaktan yararlanmak serbesttir.
+%}
+\endgroup
+
+\smallskip
+
+\hrule
+
+% ek açıklama (\begin{questions}'tan hemen sonra gelirse dosya dizilmiyor)
+%\bigskip
+%\smallskip
+%\textit{Aşağıdaki sorular R programının \texttt{fpp3} kütüphanesi kullanılarak cevaplandırılacaktır.}
+
+\begin{questions}
+
+%%%%%%% SAYFA 1 %%%%%%%
+
+% çoktan seçmeli sorular
+
+\question[**] Çoktan seçmeli bir soru... % A
+%\question[**] Çoktan seçmeli bir soru... % B
+
+\begin{oneparchoices}
+\choice birinci şık
+\CorrectChoice ikinci şık % A
+\choice üçüncü şık % B
+\end{oneparchoices}
+
+\vspace{\stretch{1}} % burada 1'den başka sayılar da kullanılabiliyor
+
+\question[**] Çoktan seçmeli bir soru...
+
+\begin{choices}
+\choice birinci şık
+\CorrectChoice ikinci şık
+\choice üçüncü şık
+\end{choices}
+
+\vspace{\stretch{1}}
+
+\question Çoktan seçmeli ve parçalı bir soru...
+
+\begin{parts}
+
+\part[**] Birinci parça...
+
+\begin{oneparchoices}
+\choice birinci şık
+\CorrectChoice ikinci şık
+\choice üçüncü şık
+\end{oneparchoices}
+
+\vspace{\stretch{1}}
+
+\part[**] İkinci parça...
+
+\begin{oneparchoices}
+\choice birinci şık
+\CorrectChoice ikinci şık
+\choice üçüncü şık
+\end{oneparchoices}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+\question[**] Çoktan seçmeli bir soru...
+
+\begin{oneparcheckboxes}
+\choice birinci şık
+\CorrectChoice ikinci şık
+\choice üçüncü şık
+\end{oneparcheckboxes}
+
+\vspace{\stretch{1}}
+
+\question[**] Çoktan seçmeli bir soru...
+
+\begin{checkboxes}
+\choice birinci şık
+\CorrectChoice ikinci şık
+\choice üçüncü şık
+\end{checkboxes}
+
+\vspace{\stretch{1}}
+
+\newpage
+
+%%%%%%% SAYFA 2 %%%%%%%
+
+\begingroup
+%
+\newcommand \lf {0.75} % sol panelin genişliğini belirleyen çarpan
+\newcommand \gf {0.045} % orta boşluğun genişliğini belirleyen çarpan
+\newcommand \rf {0.17} % sağ panelin genişliğini belirleyen çarpan
+% çarpanların toplamı -deneme yanılmayla bulduk- 0.965 olmalı
+%
+% sol panel
+%
+\begin{minipage}[t]{\lf\linewidth}
+\vspace{0 cm}
+% sol panelin içi
+\question[**] \lipsum[1][1-6] % A
+%\question[**] \lipsum[2][1-6] % B
+%
+\end{minipage}% sol panelin sonu
+%
+% orta boşluk
+%
+\hspace*{\gf\linewidth}
+%
+% sağ panel
+%
+\begin{minipage}[t]{\rf\linewidth}
+\vspace{0 cm}
+% sağ panelin içi
+\begin{center}
+\includegraphics[scale = 0.1]{logo}
+\end{center}
+%
+\end{minipage}% sağ panelin sonu
+%
+\endgroup
+
+\medskip
+
+\begin{oneparchoices}
+\choice birinci şık
+\CorrectChoice ikinci şık % A
+\choice üçüncü şık % B
+\choice dördüncü şık
+\choice beşinci şık
+\choice altıncı şık
+\end{oneparchoices}
+
+\vspace{\stretch{1}}
+
+% klasik soru
+
+\question[**] Klasik soru...
+
+\begin{solution}
+Sorunun cevabı...
+\end{solution}
+
+\vspace{\stretch{1}}
+
+% doğru-yanlış sorusu
+
+\question[**] Doğru-yanlış sorusu...
+% Aşağıdaki ifadelerin doğru mu (D) yanlış mı (Y) olduklarını sol taraflarındaki boşluğa yazınız.
+
+\begingroup
+\renewcommand{\partlabel}{•}
+\begin{parts}
+\part \tf[D] İlk ifade...
+\part \tf[Y] İkinci ifade...
+\end{parts}
+\endgroup
+
+\vspace{\stretch{1}}
+
+% boşluk doldurma sorusu
+
+\question[10] Boşluk doldurma sorusu...
+% Aşağıdaki cümlelerde verilen boşluğu uygun kelime ya da kelimelerle doldurunuz.
+
+\begingroup
+\renewcommand{\partlabel}{•}
+\begin{parts}
+\part İlk \fillin[boşluklu] ifade...
+\part İkinci \fillin[boşluk doldurmalı][4.25 cm] ifade...
+\end{parts}
+\endgroup
+
+\vspace{\stretch{1}}
+
+\end{questions}
+
+\end{document}

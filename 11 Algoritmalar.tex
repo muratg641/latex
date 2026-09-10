@@ -1,0 +1,229 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[turkish, shorthands = :!]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{fancyhdr, lipsum, mathtools}
+
+\usepackage{algpseudocodex} % Package for typesetting pseudocode
+% [noEnd = true, indLines = true]
+% bk. algpseudocodex kılavuzu
+
+\usepackage{algorithm} % algoritmalara başlık koyabilmek için
+
+% algpseudocodex paketi sözde kod yazmak, algorithm paketi bu sözde kodlara (tablolarda ve figürlerde olduğu gibi) başlık koyabilmek için. Anlaşılan algoritma yazımıyla ilgili vaktiyle pek çok paket hazırlanmış ve maalesef bunlar zaman zaman uyumsuzluk oluşturuyor.
+
+\renewcommand{\headrulewidth}{0 pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\thepage}
+
+\begin{document}
+
+%%%%%%% SAYFA 1 %%%%%%%
+
+\lipsum[1][1-3]
+%
+\begin{algorithmic}
+\State $\varepsilon \gets 1$
+\While {$1 + \varepsilon > 1$}
+	\State $\varepsilon \gets \varepsilon/2$
+\EndWhile
+\State \Output {$\varepsilon$}
+\end{algorithmic}
+%
+\lipsum[1][4-5]
+
+\bigskip
+\hrule
+\bigskip
+
+% Sözde kodu \BeginBox ve \EndBox ile çerçevelerken hem çerçeve koda fazlaca yakın oluyor hem de minipage genişliğini deneme yanılma yoluyla belirlemek durumunda kalıyoruz:
+
+\lipsum[1][1-3]
+%
+\begin{center}
+\begin{minipage}{0.28\textwidth}
+\begin{algorithmic}
+\BeginBox
+	\State $\varepsilon \gets 1$
+	\While {$1 + \varepsilon > 1$}
+		\State $\varepsilon \gets \varepsilon/2$
+	\EndWhile
+	\State \Output {$\varepsilon$}
+\EndBox
+\end{algorithmic}
+\end{minipage}
+\end{center}
+%
+\lipsum[1][4-5]
+
+\bigskip
+\hrule
+\bigskip
+
+% Çerçevenin sağ kenarının sol kenara göre koddan biraz daha uzak olması pahasına, çerçeveli ve yatay hizalanmış sözde kodlar için aşağıdaki yapıyı kullanmak sanki daha uygun:
+
+\lipsum[1][1-3]
+% burada boş satır bırakmak aradaki boşluğu biraz artırıyor
+\begin{center}
+\fbox
+{
+\begin{minipage}{0.33\textwidth}
+\medskip % kodu çerçevenin üst kısmından biraz uzaklaştırmak için
+\begin{algorithmic}
+\State $\varepsilon \gets 1$
+\While {$1 + \varepsilon > 1$}
+	\State $\varepsilon \gets \varepsilon/2$
+\EndWhile
+\State \Output {$\varepsilon$}
+\end{algorithmic}
+\smallskip % kodu çerçevenin alt kısmından biraz uzaklaştırmak için
+\end{minipage}
+}
+\end{center}
+% burada boş satır bırakmak aradaki boşluğu değiştirmiyor, sadece gelecek satırın yeni paragraf olup olmamasını belirliyor
+\lipsum[1][4-5]
+
+\newpage
+
+%%%%%%% SAYFA 2 %%%%%%%
+
+\lipsum[1][1-3]
+
+\begin{algorithmic}[1] % satır numaralarının kaç satırda bir gösterileceğini belirliyoruz (0 dersek satırlar numaralandırılmıyor ki varsayılan bu)
+\State $x_l \gets a$ % illa State diyeceğiz, yoksa (STATE veya state) olmuyor
+\State $x_u \gets b$
+\State $E \gets (x_u - x_l)/2$
+\While {$E \geq E_s$}
+	\State $c \gets (x_l + x_u)/2$
+	\If {$f(c) = 0$}
+		\State $x_l \gets c$
+		\State $x_u \gets c$
+	\ElsIf {$f(a)f(c) < 0$}
+		\State $x_l \gets c$
+	\ElsIf {$f(c)f(b) < 0$}
+		\State $x_u \gets c$
+	\EndIf
+	\State $E \gets (x_u - x_l)/2$
+\EndWhile
+\State $x_r \gets (x_l + x_u)/2$
+\State \Output {$x_r$}
+\end{algorithmic}
+
+\lipsum[1][4-5]
+
+\bigskip
+\hrule
+\bigskip
+
+\lipsum[1][1-3]
+
+\begin{center}
+\fbox
+{
+\begin{minipage}{0.5\textwidth}
+\smallskip
+\begin{algorithmic}[1]
+\State $x_l \gets a$
+\State $x_u \gets b$
+\State $E \gets (x_u - x_l)/2$
+\While {$E \geq E_s$}
+	\State $c \gets (x_l + x_u)/2$
+	\If {$f(c) = 0$}
+		\State $x_l \gets c$
+		\State $x_u \gets c$
+	\ElsIf {$f(a)f(c) < 0$}
+		\State $x_l \gets c$
+	\ElsIf {$f(c)f(b) < 0$}
+		\State $x_u \gets c$
+	\EndIf
+	\State $E \gets (x_u - x_l)/2$
+\EndWhile
+\State $x_r \gets (x_l + x_u)/2$
+\State \Output {$x_r$}
+\end{algorithmic}
+\end{minipage}
+}
+\end{center}
+
+\lipsum[1][4-5]
+
+\newpage
+
+%%%%%%% SAYFA 3 %%%%%%%
+
+\lipsum[1][1-3]
+
+\begin{algorithm}
+\caption{Bisection method.}
+\label{alg:bisection}
+\begin{algorithmic}[1]
+\State $x_l \gets a$
+\State $x_u \gets b$
+\State $E \gets (x_u - x_l)/2$
+\While {$E \geq E_s$}
+	\State $c \gets (x_l + x_u)/2$
+	\If {$f(c) = 0$}
+		\State $x_l \gets c$
+		\State $x_u \gets c$
+	\ElsIf {$f(a)f(c) < 0$}
+		\State $x_l \gets c$
+	\ElsIf {$f(c)f(b) < 0$}
+		\State $x_u \gets c$
+	\EndIf
+	\State $E \gets (x_u - x_l)/2$
+\EndWhile
+\State $x_r \gets (x_l + x_u)/2$
+\State \Output {$x_r$}
+\end{algorithmic}
+\end{algorithm}
+
+\lipsum[1][4-5]
+
+Algorithm~\ref{alg:bisection}...
+
+\newpage
+
+%%%%%%% SAYFA 4 %%%%%%%
+
+% Aşağıdaki iki sözde kodda, satır numaralandırmasını genişlettiğimiz ölçüde olsa gerek, \textwidth'i aşıyoruz. İlginçtir ki algpseudocodex yerine algpseudocode paketini kullanırsak bu sorun ortadan kalkıyor.
+
+\begingroup
+\algrenewcommand{\alglinenumber}[1]{Step #1.} % algoritma satır numaralandırmasını biçimlendirmek için
+\begin{algorithmic}[1]
+\State Integrate (external) demand: $d(i, t)$ for all $i, t$.
+\State Shift unit demands so that, for end items in the same family, none of them coincide: $\sum_{i \in I(j)} d(i, t) \leq 1$ for all $j, t$.
+\State Construct and integrate the dependent demand vectors $\rho_j$ for each intermediate item~$j$.
+\State Shift unit demands so that none of them coincide: $\sum_i d(i, t) \leq 1$ for all~$t$.
+\State Construct the total dependent demand vector $\rho$, and check feasibility.
+\end{algorithmic}
+\endgroup
+
+\bigskip
+\hrule
+\bigskip
+
+\lipsum[1][1-3]
+
+\noindent
+\fbox{% bu yüzde işareti tam burada olmalı, yoksa çerçeve \textwidth'i az da olsa aşıyor
+\begin{minipage}{\dimexpr \textwidth - 2\fboxrule - 2\fboxsep}
+\begingroup
+\algrenewcommand{\alglinenumber}[1]{Step #1.}
+\begin{algorithmic}[1]
+\State Integrate (external) demand: $d(i, t)$ for all $i, t$.
+\State Shift unit demands so that, for end items in the same family, none of them coincide: $\sum_{i \in I(j)} d(i, t) \leq 1$ for all $j, t$.
+\State Construct and integrate the dependent demand vectors $\rho_j$ for each intermediate item~$j$.
+\State Shift unit demands so that none of them coincide: $\sum_i d(i, t) \leq 1$ for all~$t$.
+\State Construct the total dependent demand vector $\rho$, and check feasibility.
+\end{algorithmic}
+\endgroup
+\end{minipage}% bu yüzde işareti tam burada olmalı, yoksa çerçeve \textwidth'i az da olsa aşıyor 
+}
+
+\lipsum[1][4-5]
+
+\end{document}

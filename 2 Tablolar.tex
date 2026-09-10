@@ -1,0 +1,444 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[turkish, shorthands = :!]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{fancyhdr, lipsum, amsmath}
+
+\usepackage{caption} % Customising captions in floating environments (\centering kullandığımızda tablo başlıkları tablolara çok yakın durmasın diye; figür başlıklarını etkilemiyor)
+
+\usepackage{array} % Extending the array and tabular environments (tabular ortamında sütun genişliğini belirlerken dikey hizalamada to 'p' yerine 'm'iddle veya 'b'ottom seçeneklerini kullanabilmek için)
+
+\usepackage{tabularx} % Tabulars with adjustable-width columns (sütun genişliklerini el yordamıyla belirlememek için)
+
+\usepackage{booktabs} % Publication quality tables in LATEX (\cmidrule ile uçları kırpılmış yatay çizgiler çizebilmek için)
+
+\usepackage{multirow} % Create tabular cells spanning multiple rows (altlı üstlü hücreleri birleştirebilmek için)
+
+\usepackage{longtable} % Allow tables to flow over page boundaries
+
+\renewcommand{\arraystretch}{1.25} % satır aralıklarını genişletmek için
+
+\renewcommand{\tabularxcolumn}[1]{>{\normalsize}m{#1}} % tabularx tablolarında hücre içeriklerini dikey ortalamak istersek (font büyüklüğünü de \normalsize'dan farklı bir şey yapabiliriz)
+
+\newcolumntype{Y}{>{\normalsize\centering\arraybackslash}X} % tabularx tabloları için yatay ortalanmış sütun biçimi
+
+\renewcommand{\headrulewidth}{0 pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\thepage}
+
+\begin{document}
+
+%%%%%%% SAYFA 1 %%%%%%%
+
+\lipsum[1][1-3]
+% tablodan önce ve sonra birer boşluk bırakmazsak tablo satır içine gömülüyor
+
+\begin{tabular}{l c c c}
+\hline
+& İçmeyen & Az İçen & Çok İçen \\
+\hline
+Hipertansiyonlu & 21 & 36 & 30 \\
+Hipertansiyonsuz & 48 & 26 & 19 \\
+\hline
+\end{tabular}
+
+\lipsum[1][4-5]
+
+\bigskip
+\hrule
+\bigskip
+
+\lipsum[1][1-3]
+% burada boş satır bırakmamak dikey boşluğu biraz azaltıyor
+\begin{center} % hem ortalıyor hem tablodan önce ve sonra boşluk oluşturuyor (bu durumda tablo, sergilenen bir eşitlik gibi paragraf içinde düşünülüyorsa, öncesinde ve sonrasında boş satır bırakmaya gerek yok)
+\begin{tabular}{l c c c}
+\hline
+& İçmeyen & Az İçen & Çok İçen \\
+\hline
+Hipertansiyonlu & 21 & 36 & 30 \\
+Hipertansiyonsuz & 48 & 26 & 19 \\
+\hline
+\end{tabular}
+\end{center}
+% paragraf devam ediyorsa boş satır bırakmamalı (dikey boşluğu değiştirmiyor)
+\lipsum[1][4-5]
+
+\bigskip
+\hrule
+\bigskip
+
+\lipsum[1][1-3]
+
+\begingroup
+\renewcommand{\arraystretch}{1} % varsayılan
+\begin{center}
+\begin{tabular}{l c c c}
+\hline
+& İçmeyen & Az İçen & Çok İçen \\
+\hline
+Hipertansiyonlu & 21 & 36 & 30 \\
+Hipertansiyonsuz & 48 & 26 & 19 \\
+\hline
+\end{tabular}
+\end{center}
+\endgroup
+
+\lipsum[1][4-5]
+
+\newpage
+
+%%%%%%% SAYFA 2 %%%%%%%
+
+% Figürlerde olduğu gibi \begin{center}...\end{center} yerine \centering kullanıyoruz; bk. https://tex.stackexchange.com/a/116601. Fakat bu durumda tablo başlığı, eğer caption paketini yüklemezsek, çok yakın duruyor tabloya.
+
+% \centering'i \begin{tabular}'dan hemen önceki satıra koymak bir şey değiştirmiyor
+
+\lipsum[1][1-3]
+
+\begin{table}[h] % 'h'ere (özellikle gerekmiyorsa kullanmamak daha iyi olabilir)
+\centering
+\caption{Sigaranın hipertansiyona etkisi.}
+\label{tab:sh} % \caption'dan sonra gelmeli
+\begin{tabular}{l c c c}
+\hline
+& İçmeyen & Az İçen & Çok İçen \\
+\hline
+Hipertansiyonlu & 21 & 36 & 30 \\
+Hipertansiyonsuz & 48 & 26 & 19 \\
+\hline
+\end{tabular}
+\end{table}
+% burada boşluk olup olmaması bir şey değiştirmiyor
+\lipsum[1][4-5]
+
+Tablo~\ref{tab:sh}...
+
+\bigskip
+\hrule
+\bigskip
+
+\lipsum[1][1-3]
+
+\begin{table}[h]
+\caption{Sigaranın hipertansiyona etkisi.}
+\begin{center}
+\begin{tabular}{l c c c}
+\hline
+& İçmeyen & Az İçen & Çok İçen \\
+\hline
+Hipertansiyonlu & 21 & 36 & 30 \\
+Hipertansiyonsuz & 48 & 26 & 19 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\lipsum[1][4-5]
+
+\bigskip
+\hrule
+\bigskip
+
+\lipsum[1][1-3]
+
+\begin{center}
+\begin{tabular}{|r|r|}
+\hline
+\multicolumn{2}{|c|}{Park Ücretleri} \\
+\hline
+0-2 Saat & 5 TL \\
+2-4 Saat & 6 TL \\
+4-6 Saat & 7 TL \\
+6-8 Saat & 8 TL \\
+8-12 Saat & 9 TL \\
+Gün Boyu & 10 TL \\
+\hline
+\end{tabular}
+\end{center}
+% paragraf devam ediyorsa boş satır bırakmamalı (dikey boşluğu değiştirmiyor)
+\lipsum[1][4-5]
+
+\newpage
+
+%%%%%%% SAYFA 3 %%%%%%%
+
+\lipsum[1][1-3]
+
+\begin{table}[h]
+\centering
+\caption{Indices, sets, parameters, and decision variables.}
+\begin{tabular}{c l}
+\hline
+Symbol(s)	& Explanation \\
+\hline
+$i, j, t$	& indices for end items, intermediate items, time periods \\
+$j(i)$	& index of the unique predecessor of $i$ \\
+$r(i)$	& possibly fractional number of units of intermediate item $j(i)$ required to produce one unit of end item $i$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\lipsum[1][4-5]
+
+\bigskip
+\hrule
+\bigskip
+
+\lipsum[1][1-3]
+
+\begin{table}[h]
+\centering
+\caption{Indices, sets, parameters, and decision variables.}
+\begin{tabular}{c p{7 cm}} % sütun genişliği el yordamıyla belirleniyor (p yerine array paketi yüklüyken m veya b kullanılabilir, 7 cm yerine mesela 0.5\textwidth de yazılabilir)
+\hline
+Symbol(s)	& Explanation \\
+\hline
+$i, j, t$	& indices for end items, intermediate items, time periods \\
+$j(i)$	& index of the unique predecessor of $i$ \\
+$r(i)$	& possibly fractional number of units of intermediate item $j(i)$ required to produce one unit of end item $i$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\lipsum[1][4-5]
+
+\newpage
+
+%%%%%%% SAYFA 4 %%%%%%%
+
+\lipsum[1][1-3]
+
+\begin{table}[h]
+\centering
+\caption{Indices, sets, parameters, and decision variables.}
+\label{tab:notation}
+\begin{tabularx}{\textwidth}{X X}
+\hline
+Symbol(s)	& Explanation \\
+\hline
+$i, j, t$	& indices for end items, intermediate items, time periods \\
+$j(i)$	& index of the unique predecessor of $i$ \\
+$r(i)$	& possibly fractional number of units of intermediate item $j(i)$ required to produce one unit of end item $i$ \\
+\hline
+\end{tabularx}
+\end{table}
+
+\lipsum[1][4-5]
+
+Tablo~\ref{tab:notation}...
+
+\bigskip
+\hrule
+\bigskip
+
+\lipsum[1][1-3]
+
+\begin{table}[h]
+\centering
+\caption{Indices, sets, parameters, and decision variables.}
+\begin{tabularx}{\textwidth}{
+	>{\hsize = 0.6\hsize}X % toplam genişliğin %30'u: 0,3 × 2 = 0,6
+	>{\hsize = 1.4\hsize}X % toplam genişliğin %70'i: 0,7 × 2 = 1,4
+}	% 0,6 + 1,4 = 2 (sütun sayısı)
+\hline
+Symbol(s)	& Explanation \\
+\hline
+$i, j, t$	& indices for end items, intermediate items, time periods \\
+$j(i)$	& index of the unique predecessor of $i$ \\
+$r(i)$	& possibly fractional number of units of intermediate item $j(i)$ required to produce one unit of end item $i$ \\
+\hline
+\end{tabularx}
+\end{table}
+
+\lipsum[1][4-5]
+
+\newpage
+
+%%%%%%% SAYFA 5 %%%%%%%
+
+\lipsum[1][1-3]
+
+\begin{table}[h]
+\centering
+\caption{Indices, sets, parameters, and decision variables.}
+\begin{tabularx}{\textwidth}{
+	>{\hsize = 0.6\hsize \centering\arraybackslash}X % genişliği düzenlenmiş ve yatay olarak ortalanmış sütun
+	>{\hsize = 1.4\hsize \raggedleft\arraybackslash}X % genişliği düzenlenmiş ve sağa yaslanmış sütun
+}
+\hline
+Symbol(s)	& Explanation \\
+\hline
+$i, j, t$	& indices for end items, intermediate items, time periods \\
+$j(i)$	& index of the unique predecessor of $i$ \\
+$r(i)$	& possibly fractional number of units of intermediate item $j(i)$ required to produce one unit of end item $i$ \\
+\hline
+\end{tabularx}
+\end{table}
+
+\lipsum[1][4-5]
+
+\bigskip
+\hrule
+\bigskip
+
+\lipsum[1][1-3]
+
+\begin{table}[h]
+\centering
+\caption{Indices, sets, parameters, and decision variables.}
+\begin{tabularx}{\textwidth}{
+	>{\hsize = 0.6\hsize}Y % yukarıdaki etkiyi yeni bir sütun biçimi tanımlayarak elde ediyoruz
+	>{\hsize = 1.4\hsize \raggedleft\arraybackslash}X
+}
+\hline
+Symbol(s)	& Explanation \\
+\hline
+$i, j, t$	& indices for end items, intermediate items, time periods \\
+$j(i)$	& index of the unique predecessor of $i$ \\
+$r(i)$	& possibly fractional number of units of intermediate item $j(i)$ required to produce one unit of end item $i$ \\
+\hline
+\end{tabularx}
+\end{table}
+
+\lipsum[1][4-5]
+
+\newpage
+
+%%%%%%% SAYFA 6 %%%%%%%
+
+\lipsum[1][1-3]
+
+\begin{table}[h]
+\centering
+\caption{Solution quality and performance of formulation TAPL1.}
+\label{tab:TAPL1}
+\begin{tabular}{*{10}{c}}
+\hline
+& & \multicolumn{4}{c}{$d = 1$} & \multicolumn{4}{c}{$d = 2$} \\
+\cmidrule(lr){3-6} \cmidrule(l){7-10}
+$I$ & $J$ & Feasible & Optimal & Gap (\%) & Time (s) & Feasible & Optimal & Gap (\%) & Time (s) \\
+\hline
+5	& 15	& 5 		& 5 		& 0.00	& 0.2	& 5 		& 5 		& 0.00		& 0.2 \\
+ 	& 25 	& 5 		& 5 		& 0.01 	& 9.3 	& 5 		& 5 		& 0.01		& 5.8 \\
+\hline
+15	& 45 	& 5 		& 3 		& 0.62 	& 348 	& 5 		& 0 		& 1.04		& 600 \\ 
+	& 75 	& 5 		& 0 		& 1.05 	& 600 	& 5 		& 0 		& 1.49		& 600 \\
+\hline
+30 	& 90 	& 3 		& 0 		& - 		& 600 	& 5 		& 0 		& 2.61		& 600 \\
+	& 150	& 3 		& 0 		& - 		& 600 	& 5 		& 0 		& 1.48		& 600 \\
+\hline
+50 	& 150 	& 2 		& 0 		& - 		& 600 	& 5 		& 0 		& 2.49		& 600 \\
+	& 250	& 0 		& 0 		& -		& 600 	& 5 		& 0 		& 9.00		& 600 \\
+\hline
+75 	& 225 	& 0 		& 0 		& - 		& 600 	& 5 		& 0 		& 163.2		& 600 \\
+	& 375	& 0 		& 0 		& - 		& 600 	& 4 		& 0 		& -			& 600 \\
+\hline
+\end{tabular}
+\end{table}
+
+\lipsum[1][4-5]
+
+\bigskip
+\hrule
+\bigskip
+
+\lipsum[1][1-3]
+
+\begin{center}
+\begin{tabular}{c c c c}
+\hline
+\multicolumn{2}{c}{Vergiye Tabi Gelir (TL)}
+	& \multirow{2}{5 cm}[-0.3 em]{\centering Taban Üzerinden \\ Ödenecek Vergi (TL)}
+	& \multirow{2}{*}[-0.3 em]{Fazlası (\%)} \\ % \multirow parametrelerinin anlamı paket kılavuzunda yazıyor
+\cmidrule{1-2}	
+Taban & Tavan & & \\
+\hline
+0 & 70.000 & - & 15 \\
+70.001 & 150.000 & 10.500 & 20 \\
+150.001 & 550.000 & 26.500 & 27 \\
+550.001 & 1.900.000 & 134.500 & 35 \\
+1.900.001 & - & 607.000 & 40 \\
+\hline
+\end{tabular}
+\end{center}
+
+\lipsum[1][4-5]
+
+\newpage
+
+%%%%%%% SAYFA 7 & 8 %%%%%%%
+
+\begin{longtable}{c l c c} % temel özellikleri için bk. Tables başlıklı Overleaf sayfası
+\caption{MILP formulations' sizes.\label{tab:sizes}} \\
+%
+\hline
+\multirow{2}{*}[-0.3 em]{Formulation} & & \multicolumn{2}{c}{Size} \\
+\cmidrule{3-4}
+& & Polynomial & Big-O notation \\
+\hline
+\endfirsthead
+%
+\multicolumn{4}{c}{Table \ref{tab:sizes}: MILP formulations' sizes (continued).} \\ [0.5em]
+%
+\hline
+\multirow{2}{*}[-0.3 em]{Formulation} & & \multicolumn{2}{c}{Size} \\
+\cmidrule{3-4}
+& & Polynomial & Big-O notation \\
+\hline
+\endhead
+%
+\hline
+\endfoot
+%
+DJ1 & Constraints & $n^2 + n$ & $O(n^2)$ \\
+& Variables & $n^2/2 + 3n/2$ & $O(n^2)$ \\
+& Binary variables & $n^2/2 - n/2$ & $O(n^2)$ \\
+DJ2 & Constraints & $n^2$ & $O(n^2)$ \\
+& Variables & $n^2/2 + 3n/2$ & $O(n^2)$ \\
+& Binary variables & $n^2/2 - n/2$ & $O(n^2)$ \\
+LO1 & Constraints & $n^3 - 2n^2 + 2n$ & $O(n^3)$ \\
+& Variables & $n^2$ & $O(n^2)$ \\
+& Binary variables & $n^2 - n$ & $O(n^2)$ \\
+LO2 & Constraints & $n^3/3 - n^2/2 + 7n/6$ & $O(n^3)$ \\
+& Variables & $n^2$ & $O(n^2)$ \\
+& Binary variables & $n^2 - n$ & $O(n^2)$ \\
+LO3 & Constraints & $n^3/3 - n^2 + 5n/3$ & $O(n^3)$ \\
+& Variables & $n^2/2 + n/2$ & $O(n^2)$ \\
+& Binary variables & $n^2/2 - n/2$ & $O(n^2)$ \\
+PI1 & Constraints & $3n$ & $O(n)$ \\
+& Variables & $n^2 + n$ & $O(n^2)$ \\
+& Binary variables & $n^2$ & $O(n^2)$ \\
+PI2, PI3 & Constraints & $n^2 + 2n$ & $O(n^2)$ \\
+& Variables & $n^2 + n$ & $O(n^2)$ \\
+& Binary variables & $n^2$ & $O(n^2)$ \\
+%
+\pagebreak
+%
+TI1, TI2 & Constraints & $n + T$ & $O(T)$ \\
+& Variables & $nT$ & $O(nT)$ \\
+& Binary variables & $nT$ & $O(nT)$ \\
+IM1 & Constraints & $n^2 + 3n + 2$ & $O(n^2)$ \\
+& Variables & $n^2 + 3n$ & $O(n^2)$ \\
+& Binary variables & $n^2 + n$ & $O(n^2)$ \\
+IM2 & Constraints & $n^2 + 2n + 2$ & $O(n^2)$ \\
+& Variables & $n^2 + 3n$ & $O(n^2)$ \\
+& Binary variables & $n^2 + n$ & $O(n^2)$ \\
+PIM1 & Constraints & $n^2 + 2n + 1$ & $O(n^2)$ \\
+& Variables & $n^3 + 2n$ & $O(n^3)$ \\
+& Binary variables & $n^3 + n$ & $O(n^3)$ \\
+PIM2 & Constraints & $2n^2 + n + 1$ & $O(n^2)$ \\
+& Variables & $n^3 + 2n$ & $O(n^3)$ \\
+& Binary variables & $n^3 + n$ & $O(n^3)$ \\
+TIM1 & Constraints & $n(T + 1)$ & $O(nT)$ \\
+& Variables & $(n^2 + n)(T + 1) - 2nT$ & $O(n^2T)$ \\
+& Binary variables & $(n^2 + n)(T + 1) - 2nT$ & $O(n^2T)$ \\
+TIM2 & Constraints & $n(T + 1)$ & $O(nT)$ \\
+& Variables & $(n^2 + n)(T + 1)/2$ & $O(n^2T)$ \\
+& Binary variables & $(n^2 + n)(T + 1)/2$ & $O(n^2T)$ \\
+\end{longtable}
+
+\end{document}

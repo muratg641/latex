@@ -1,0 +1,120 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc} % Accept different input encodings
+
+% Türkçe yazarken aşağıdaki üç paket elzem:
+
+\usepackage[turkish, shorthands = :!]{babel} % Multilingual support for LATEX, LuaLATEX, XELATEX, and Plain TEX
+% bk. https://tr.overleaf.com/learn/latex/International_language_support
+% Eklerken ölçeğini değiştirdiğimiz resimlerin hata vermemesi için shorthands'ten eşittir işaretini çıkarıyoruz:
+% bk. https://tex.stackexchange.com/questions/32178/usepackageturkishbabel-and-includegraphics-inconcistency
+% bk. http://latexiledokumanhazirlama.blogspot.com/2010/11/latex-ile-turkce-dokumanlar-hazrlamak.html
+% bk. babel kılavuzu
+
+\usepackage[T1]{fontenc} % Standard package for selecting font encodings
+
+\usepackage{lmodern} % -
+% bk. https://tr.overleaf.com/learn/latex/Font_typefaces
+
+%\hyphenation{çev-rim} % elle heceleme (şayet gerekirse)
+
+\usepackage{lipsum} % Easy access to the Lorem Ipsum dummy text
+
+\usepackage{comment} % Selectively include/exclude portions of text
+
+\usepackage{fancyhdr} % Extensive control of page headers and footers in LaTeX2e
+
+\usepackage{doi} % Create correct hyperlinks for DOI numbers (hyperref paketini içeriyor)
+
+\usepackage{csquotes} % Context sensitive quotation facilities
+
+%\usepackage{indentfirst} % Indent first paragraph after section header
+
+% Bir komutun metnin sadece belli bir bölümü için geçerli olmasını istersek o bölümü askı parantez içine alıp komutu oraya yazabiliriz. İlk askı parantez yerine \begingroup veya \bgroup, ikinci askı parantez yerine \endgroup veya \egroup kullanılabilir. Komutlarla ilgili genel bilgi için bk. https://tr.overleaf.com/learn/latex/Commands.
+
+%\pagestyle{empty} % sayfa numaraları görünmesin diye (belge tek sayfadan oluşuyorsa)
+
+%\thispagestyle{empty} % sadece belli bir sayfanın sayfa numarası görünmesin istersek
+
+%\renewcommand{\thefootnote}{\fnsymbol{footnote}} % dipnot işaretlerinin sayı yerine simge olması için (belgede sadece tek bir dipnot varsa)
+
+\newcommand{\var}{0} % değeri sıfır olarak tanımlanan \var isimli bir komut
+
+\renewcommand{\headrulewidth}{0 pt} % sayfa üst bilgisini (header) sayfadan ayıran çizgiyi ortadan kaldırmak için
+
+\pagestyle{fancy}
+\fancyhf{} % sayfa üst ve alt bilgisini temizler
+\fancyhead[C]{\thepage} % sayfa numarası, sayfa üst bilgisinin orta kısmında
+
+\title{Başlık}
+
+\author{Murat Güngör}
+
+%\date{12 Mart 2025} % bugünden farklı bir tarih girmek istersek
+
+\begin{document}
+
+%%%%%%% SAYFA 1 %%%%%%%
+
+\maketitle
+
+\begin{abstract}
+\lipsum[1][1-6]
+\end{abstract}
+
+\section{Giriş}
+\label{sec:intro}
+% bu satırı boş bırakmak bir şey değiştirmiyor
+\lipsum[2][1-6]\footnote
+{
+Bu bir dipnot.
+}
+
+\lipsum[3][1-6]
+
+\begin{comment}
+Yorum.
+\end{comment}
+
+\section{Gelişme}
+
+\lipsum[4][1-6]
+
+\lipsum[5][1-6]
+
+\newpage
+
+%%%%%%% SAYFA 2 %%%%%%%
+
+\section*{Madde işaretleri}
+
+\lipsum[6][1-6]
+% burada boşluk olmamalı
+\begin{enumerate}
+\item \lipsum[7][1]
+\item \lipsum[7][2]
+\item \lipsum[7][3]
+\end{enumerate}
+% paragraf devam ediyorsa burada da boşluk olmamalı
+\lipsum[8][1-6]
+
+\section*{Bağlantılar}
+
+\url{http://www.ctan.org}
+\href{http://www.ctan.org}{The Comprehensive {\TeX} Archive Network}
+
+\section*{Koşullu ifadeler}
+
+\if \var 0 {.......} \fi
+
+\section*{Alıntılar}
+
+\lipsum[9][1-3]
+%
+\begin{displayquote}
+\lipsum[9][4-9]
+\end{displayquote}
+%
+\lipsum[9][10-15]
+	
+\end{document}

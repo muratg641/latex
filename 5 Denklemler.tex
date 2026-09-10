@@ -1,0 +1,151 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[turkish, shorthands = :!]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{fancyhdr, lipsum, mathtools}
+
+\usepackage{siunitx}
+\sisetup{output-decimal-marker = {,}}
+\sisetup{group-separator = {.}}
+\sisetup{group-minimum-digits = 4}
+
+\renewcommand{\headrulewidth}{0 pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\thepage}
+
+\begin{document}
+
+%%%%%%% SAYFA 1 %%%%%%%
+
+\lipsum[1][1-3]
+% sergilenen (displayed) bir denklemden önce kesinlikle boş satır bırakmamalı (illa bırakılacaksa o satıra en azından bir yüzde işareti konmalı) ki denklem öncesi ve sonrası boşluklar dengeli olsun
+\[ i = \sqrt{-1} \] % çeşitli sebeplerden ötürü \[...\] yerine $$...$$ kullanmak önerilmiyor
+% bu satırı boş bırakmak dikey boşluğu değiştirmiyor, sadece müteakip cümlenin paragraf başı olup olmamasını belirliyor
+\lipsum[1][4-6]
+
+\bigskip
+\hrule
+\bigskip
+
+\lipsum[1][1-3]
+
+\[ i = \sqrt{-1} \]
+
+\lipsum[1][4-6]
+
+\bigskip
+\hrule
+\bigskip
+
+\lipsum[1][1-3]
+\begin{equation} \label{eq:imaginary}
+i = \sqrt{-1}
+\end{equation}
+\lipsum[1][4-6]
+
+Denklem~\eqref{eq:imaginary}...
+
+\bigskip
+\hrule
+\bigskip
+
+% yanlış
+\lipsum[1][1-3]
+\[ i = \sqrt{-1} \]
+\[ ax^2 + bx + c = 0 \]
+\lipsum[1][4-6]
+
+\bigskip
+\hrule
+\bigskip
+
+% doğru
+\lipsum[1][1-3]
+\begin{gather*}
+i = \sqrt{-1} \\ 
+ax^2 + bx + c = 0 % buraya \\ işareti konmamalı
+\end{gather*}
+\lipsum[1][4-6]
+
+\newpage
+
+%%%%%%% SAYFA 2 %%%%%%%
+
+\lipsum[1][1-3]
+\begin{multline*}
+\Big( 1 - \frac{w_i}{W} \Big) \Big( 1 - \frac{w_i}{W - w_N} \Big) \Big( 1 - \frac{w_i}{W - w_N - w_{N - 1}} \Big) \\
+\leq q_i \leq \Big( 1 - \frac{w_i}{W} \Big) \Big( 1 - \frac{w_i}{W - w_1} \Big) \Big( 1 - \frac{w_i}{W - w_1 - w_2} \Big).
+\end{multline*}
+\lipsum[1][4-6]
+
+\bigskip
+\hrule
+\bigskip
+
+\lipsum[1][1-3]
+\begin{align*}
+P(X < \num{2,99} & \text{ veya } X > \num{3,01}) = P(X < \num{2,99}) + P(X > \num{3,01}) \\
+&= P\left(\frac{X-\mu}{\sigma} < \frac{\num{2,99}-\mu}{\sigma}\right) + P\left(\frac{X-\mu}{\sigma} > \frac{\num{3,01}-\mu}{\sigma}\right) \\
+&= P\left(Z < \frac{\num{2,99}-\mu}{\sigma}\right) + P\left(Z > \frac{\num{3,01}-\mu}{\sigma}\right) \\
+&= P(Z < -2) + P(Z > 2) \\
+&= \num{0,0456}.
+\end{align*}
+\lipsum[1][4-6]
+
+\newpage
+
+%%%%%%% SAYFA 3 %%%%%%%
+
+\lipsum[1][1-3]
+\begin{align*} 
+y	& = (x - a)(x - b) \\
+	& = x^2 - (a + b)x + ab
+\end{align*}
+\lipsum[1][4-6]
+
+\bigskip
+\hrule
+\bigskip
+
+\lipsum[1][1-3]
+\begin{align*}
+4x - y + 2z		& = -1 \\
+-x + (\ln 2)y - 3z	& = 0 % buraya \\ işareti konmamalı
+\end{align*}
+\lipsum[1][4-6]
+
+\bigskip
+\hrule
+\bigskip
+
+\lipsum[1][1-3]
+\begin{align*}
+x		& = y		&	w		& = z \\
+2x		& = -y		&	3w		& = \frac{1}{2}z \\
+-4 + 5x	& = 2 + y	&	w + 2	& = -1 + w       
+\end{align*}
+\lipsum[1][4-6]
+
+\newpage
+
+%%%%%%% SAYFA 4 %%%%%%%
+
+\lipsum[1][1-3]
+\begingroup
+\sisetup{group-separator = {}}
+\setlength{\jot}{0.75 em} % alt alta kesirli denklemlerde satırlar arası boşluğu artırmak için (varsayılan değeri 3 pt)
+\begin{align*}
+P(B_2|A)
+	&= \frac{P(B_2)P(A|B_2)}{\sum_{i=1}^{3} P(B_i)P(A|B_i)} \\
+	&= \frac{\num{0,45} \cdot \num{0,03}}{\num{0,3} \cdot \num{0,02} + \num{0,45} \cdot \num{0,03} + \num{0,25} \cdot \num{0,02}} \\
+	&= \frac{\num{0,0135}}{\num{0,0245}} \\
+	&= \frac{27}{49}.
+\end{align*}
+\endgroup
+\lipsum[1][4-6]
+
+\end{document}

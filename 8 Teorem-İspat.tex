@@ -1,0 +1,114 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[turkish, shorthands = :!]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{fancyhdr, lipsum, mathtools}
+
+\usepackage{amsthm} % Typesetting theorems (AMS style)
+
+\theoremstyle{plain} % varsayılan
+\newtheorem{prop}{Önerme}
+\newtheorem{lem}{Önsav}
+\newtheorem{conj}{Sanı}
+\newtheorem{cor}{Sonuç}
+\newtheorem{thm}{Teorem}
+\newtheorem*{thm*}{Teorem} % numaralandırılmamış teorem
+\newtheorem*{thm1*}{Filancanın Teoremi} % özel adlandırılmış teorem
+
+\theoremstyle{definition}
+\newtheorem{defn}{Tanım}
+\newtheorem{ex}{Örnek}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Not}
+
+\newtheoremstyle{solution}{}{}{}{}{\itshape}{.}{ }{} % ``ispat'' ortamının ``çözüm'' sürümü gibi
+\theoremstyle{solution}
+\newtheorem*{soln}{Çözüm}
+
+%\newtheorem{conj}{Conjecture}
+%\newtheorem{cor}{Corollary}
+%\newtheorem{lem}{Lemma}
+%\newtheorem{prop}{Proposition}
+%\newtheorem{thm}{Theorem}
+
+% numaralar biçimden bağımsız tek bir sıra izlesin istersek:
+%\newtheorem{prop}{Önerme}
+%\newtheorem{lem}[prop]{Önsav}
+%\newtheorem{conj}[prop]{Sanı}
+%\newtheorem{cor}[prop]{Sonuç}
+%\newtheorem{thm}[prop]{Teorem}
+
+\addto\captionsturkish{
+	\renewcommand{\proofname}{İspat} % "kanıt" yerine "ispat"
+}
+
+\renewcommand{\headrulewidth}{0 pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\thepage}
+
+\begin{document}
+
+\lipsum[1][1-6]
+
+\begin{defn}
+Bu bir tanımdır.
+\end{defn}
+
+\lipsum[1][7-12]
+
+\begin{ex}
+Bu bir örnektir.
+\end{ex}
+
+\begin{soln}
+Bu bir çözümdür.
+\end{soln}
+
+\begin{ex}
+Bu başka bir örnektir.
+\end{ex}
+
+\lipsum[1][7-12]
+
+\begin{rem}
+Bu bir nottur.
+\end{rem}
+
+\lipsum[1][13-18]
+
+\begin{lem} \label{lem:1}
+Bu bir önsavdır.
+\end{lem}
+
+Önsav~\ref{lem:1}'den dolayı...
+
+\begin{prop}
+Bu bir önermedir.
+\end{prop}
+
+\lipsum[2][1-6]
+
+\begin{thm}
+Bu bir teoremdir.
+\end{thm}
+
+\begin{proof}
+Bu bir ispattır.
+\end{proof}
+
+\lipsum[2][7-12]
+
+\begin{thm*}
+Numaralandırılmamış bir teorem.
+\end{thm*}
+
+\begin{thm1*}
+Özel adlandırılmış bir teorem.
+\end{thm1*}
+
+\end{document}

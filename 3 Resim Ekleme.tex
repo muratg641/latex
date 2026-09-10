@@ -1,0 +1,323 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[turkish, shorthands = :!]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{fancyhdr, lipsum}
+
+\usepackage{graphicx} % Enhanced support for graphics (resim ekleyebilmek için)
+
+\usepackage{tabularx} % metnin yanına resim koyma yollarından biri
+
+\graphicspath{{./auxiliary/}} % resimler auxiliary klasörü içinde
+
+\renewcommand{\headrulewidth}{0 pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\thepage}
+
+\begin{document}
+
+%%%%%%% SAYFA 1 %%%%%%%
+
+\lipsum[1][1-2]
+\includegraphics[scale = 0.1]{logo}
+\lipsum[1][3-4]
+
+\bigskip
+\hrule
+\bigskip
+
+\lipsum[1][1-2]
+
+\includegraphics[scale = 0.1]{logo}
+
+\lipsum[1][3-4]
+
+\bigskip
+\hrule
+\bigskip
+
+\lipsum[1][1-2]
+
+\begin{center}
+\includegraphics[scale = 0.1]{logo}
+\end{center}
+
+\lipsum[1][3-4]
+
+\newpage
+
+%%%%%%% SAYFA 2 %%%%%%%
+
+\lipsum[1][1-2]
+% burada boşluk olup olmaması, dikey boşlukları değilse de, resimden önceki ve sonraki metni etkileyebiliyor
+\begin{figure}[h] % 'h'ere (özellikle gerekmiyorsa kullanmamak daha iyi olabilir)
+\centering
+\includegraphics[scale = 0.1]{logo}
+\caption{Medeniyet Üniversitesi logosu.} % figürlerde başlık aşağıda, tablolarda yukarıda; bk. https://tex.stackexchange.com/questions/3243/why-should-a-table-caption-be-placed-above-the-table
+\label{fig:logo}
+\end{figure}
+% burada boşluk olup olmaması bir şey değiştirmiyor
+\lipsum[1][3-4]
+
+Şekil~\ref{fig:logo}...
+
+\bigskip
+\hrule
+\bigskip
+
+\lipsum[1][1-2]
+
+\begin{figure}[h]
+\begin{center} % \centering yerine bunu kullanmak fazladan dikey boşluk yaratıyor (yukarıdaki örneklerde de gördüğümüz gibi)
+\includegraphics[scale = 0.1]{logo}
+\end{center}
+\caption{Medeniyet Üniversitesi logosu.}
+\end{figure}
+
+\lipsum[1][3-4]
+
+\newpage
+
+%%%%%%% SAYFA 3 %%%%%%%
+
+\lipsum[1][1-5]
+
+\bigskip
+\hrule
+\bigskip
+
+\begin{minipage}{\textwidth}
+\lipsum[1][1-5]
+\end{minipage}
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent
+\begin{minipage}{\textwidth}
+\lipsum[1][1-5]
+\end{minipage}
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent
+\fbox
+{
+\begin{minipage}{\textwidth}
+\lipsum[1][1-5]
+\end{minipage}
+}
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent
+\frame % \frame'de \fboxsep söz konusu değil
+{
+\begin{minipage}{\textwidth}
+\lipsum[1][1-5]
+\end{minipage}
+}
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent
+\frame
+{
+\begin{minipage}{\textwidth}
+\lipsum[1][1-5]
+\end{minipage}% bu yüzde işareti (ya da müteakip askı parantez) tam burada olmalı, yoksa çerçeve \textwidth'i az da olsa aşıyor 
+}
+
+\newpage
+
+%%%%%%% SAYFA 4 %%%%%%%
+
+\lipsum[1][1-5]
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent
+\frame
+{
+\begin{minipage}{0.5\textwidth}
+\lipsum[1][1-2]
+\end{minipage}
+}
+\frame
+{
+\begin{minipage}{0.5\textwidth}
+\lipsum[1][1-2]
+\end{minipage}
+}
+
+\bigskip
+\hrule
+\bigskip
+
+% \textwidth'in aşılmaması için aşağıdaki üç yüzde işareti de elzem
+\noindent
+\frame
+{
+\begin{minipage}{0.5\textwidth}
+\lipsum[1][1-2]
+\end{minipage}%
+}%
+\frame
+{
+\begin{minipage}{0.5\textwidth}
+\lipsum[1][1-2]
+\end{minipage}%
+}
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent
+\frame
+{
+\begin{minipage}{0.5\textwidth}
+\lipsum[1][1-4]
+\end{minipage}%
+}%
+\frame
+{
+\begin{minipage}{0.5\textwidth}
+\centering
+\includegraphics[scale = 0.1]{logo}
+\end{minipage}%
+}
+
+\newpage
+
+%%%%%%% SAYFA 5 %%%%%%%
+
+\lipsum[1][1-5]
+
+\bigskip
+\hrule
+\bigskip
+
+% resim metnin üst kısmıyla aynı hizada değil (metin çok kısa olsa da sıkıntılı)
+\noindent
+\begin{minipage}{0.5\textwidth}
+\lipsum[1][1-8]
+\end{minipage}
+\hfill
+\includegraphics[scale = 0.1]{logo}
+
+\bigskip
+\hrule
+\bigskip
+
+% resmin metnin üst kısmıyla aynı hizada olmasını sağlayan ilk çözüm (bk. 2018 Güz MAT 101 finali); \textwidth'in aşılmaması için aşağıdaki yüzde işaretleri elzem
+\noindent
+\begin{minipage}[t]{0.5\textwidth}
+\vspace{0 cm}
+\lipsum[1][1]
+\end{minipage}%
+%
+\begin{minipage}[t]{0.5\textwidth}
+\vspace{0 cm}
+\begin{minipage}{\textwidth}
+\begin{flushright}
+\includegraphics[scale = 0.1]{logo}
+\end{flushright}
+\end{minipage}
+\end{minipage}
+
+\bigskip
+\hrule
+\bigskip
+
+% bir başka çözüm (fazladan dikey boşluk \vspace{0 cm} satırları yüzünden ama onlarsız da olmuyor); krş. https://tex.stackexchange.com/questions/11630/aligning-image-and-text-on-top-with-minipages
+\begingroup
+\setlength{\tabcolsep}{0 pt} % yoksa biraz içerlek duruyor metin
+\noindent
+\begin{tabularx}{\textwidth}{
+	>{\hsize = 1\hsize }X
+	>{\hsize = 1\hsize \raggedleft\arraybackslash}X
+}
+    \vspace{0 pt} 
+    \lipsum[1][1]
+    & 
+    \vspace{0 pt}
+    \includegraphics[scale = 0.1]{logo}
+\end{tabularx}
+\endgroup
+
+\newpage
+
+%%%%%%% SAYFA 6 %%%%%%%
+
+\lipsum[1][1-5]
+
+\bigskip
+\hrule
+\bigskip
+
+\raisebox{0.5 cm}{\includegraphics[scale = 0.1]{logo}}
+\includegraphics[scale = 0.1]{logo}
+
+\bigskip
+\hrule
+\bigskip
+
+\begin{enumerate}
+
+\item \lipsum[1][1-3]
+
+\item
+% burada \noindent'e gerek olmuyor
+% aşağıda \linewidth yerine \textwidth dersek dışarı taşıyoruz
+\begin{minipage}[t]{0.5\linewidth}
+\vspace{0 cm}
+\lipsum[1][1]
+\end{minipage}%
+%
+\begin{minipage}[t]{0.5\linewidth}
+\vspace{0 cm}
+\begin{minipage}{\linewidth}
+\begin{flushright}
+\includegraphics[scale = 0.1]{logo}
+\end{flushright}
+\end{minipage}
+\end{minipage}
+
+% krş. https://tex.stackexchange.com/a/30369/178454
+\item
+\raisebox{0.56\baselineskip} % büyük bir harfin boyunun (mesela L'nin uzun kenarının) \baselineskip'e (yani ardışık satırların "base line"ları arasındaki uzaklığa) oranını ekrandan cetvelle ölçerek yaklaşık 0,56 bulduk
+{% bu yüzde işareti elzem
+\begin{minipage}[t]{0.5\linewidth}
+\vspace{0 cm}
+\lipsum[1][1]
+\end{minipage}%
+%
+\begin{minipage}[t]{0.5\linewidth}
+\vspace{0 cm}
+\begin{minipage}{\linewidth}
+\begin{flushright}
+\includegraphics[scale = 0.1]{logo}
+\end{flushright}
+\end{minipage}
+\end{minipage}% bu yüzde işareti elzem
+}
+
+\item \lipsum[1][1-3]
+
+\end{enumerate}
+
+\end{document}

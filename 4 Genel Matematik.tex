@@ -1,0 +1,329 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[turkish, shorthands = :!]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{fancyhdr, lipsum}
+
+\usepackage{amsmath} % AMS mathematical facilities for LATEX (bu paket mathtools ile otomatik olarak yükleniyor)
+
+\usepackage{mathtools} % Mathematical tools to use with amsmath (\coloneqq işareti, rcases ortamının kendisi ve pmatrix ortamının yıldızlı biçimleri için)
+
+\usepackage{siunitx} % A comprehensive (SI) units package
+\sisetup{output-decimal-marker = {,}} % ondalıkların virgülle ayrılması için
+\sisetup{group-separator = {.}} % binlerin nokta ile ayrılması için
+\sisetup{group-minimum-digits = 5} % virgülden sonrasını ve öncesini beş basamaklı sayılardan başlayarak gruplandırmak -nokta ile ayırmak- için (varsayılan değer beş)
+
+% Matematik modunda ondalıkları ayırmada virgül kullanabilmek için daha önce ziffer paketini kullanıyorduk (yoksa Latex virgülden sonra boşluk bırakıyor). siunitx paketi ile hem bunu yapabiliyor hem de birimli sayıları temizce yazdırabiliyoruz. Ayrıca, ziffer paketini kullanırken, matematik modunda binleri ayırmada nokta kullanmak istediğimizde noktayı askı parantez içine almak (örneğin $10.000$ yerine $10{.}000$ yazmak) durumundaydık, yoksa nokta yerine boşluk oluşuyordu; siunitx ile buna da gerek kalmıyor.
+
+\usepackage{nicefrac} % Typeset in-line fractions in a "nice" way (kesirleri ½ gibi yazabilmek için)
+
+\usepackage{amssymb} % \forall, \exists vb. semboller için
+
+%\everymath{\displaystyle} % \displaystyle komutunun hep geçerli olması için
+
+%\newcommand{\R}{\mathbb{R}} % gerçel sayılar kümesi
+%\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor} % taban fonksiyonu
+%\newcommand{\ceiling}[1]{\left\lceil #1 \right\rceil} % tavan fonksiyonu
+
+%\DeclareMathOperator*{\argmin}{arg\,min} % argmin operatörü
+
+\renewcommand{\headrulewidth}{0 pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\thepage}
+
+\let\emptyset\varnothing % \emptyset'in alışkın olduğumuz boş küme simgesini oluşturması için
+
+\begin{document}
+
+%%%%%%% SAYFA 1 %%%%%%%
+
+\noindent
+$a := 1$ \\
+$a \coloneqq 1$ % tercihe şayan (mathtools paketi gerektiriyor)
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent
+1234, $1234$, \num{1234}, $\num{1234}$ \\
+12345, $12345$, \num{12345}, $\num{12345}$ \\
+3,14, \num{3,14}, $\num{3,14}$, \num{3.14}, $\num{3.14}$ \\ % $3,14$ yazarsak virgülden sonra bir boşluk bırakıyor
+0,1234567, \num{0,1234567}, $\num{0,1234567}$, $\num{0.1234567}$ \\
+\begingroup
+\sisetup{group-separator = {\,}}
+0,1234567, \num{0,1234567}, $\num{0,1234567}$, $\num{0.1234567}$ \\
+\endgroup
+10.000 TL \\
+10.000\,TL \\
+\qty{10000}{TL}, $\qty{10000}{TL}$, \qty{10 000}{TL}, $\qty{10 000}{TL}$ \\
+\qty{1586,57}{TL}, $\qty{1586,57}{TL}$ \\
+\qty{50}{dk}. \\ % parantez içine koyunca noktayı yazdırmıyor
+\qty{1000}{cm^3}, \qty{9,81}{m/s^2}, ...
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent
+one-to-one correspondence, $\sigma$-cebir, \dots \\
+çünkü rassal -anlaşılan o ki- daha yaygın kullanılıyor\dots \\
+pp.~159--160, Jakob Bernoulli (1655--1705), \dots \\
+the result---surprising to all---was a success\dots
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent
+$ab$ \\
+$a\, b$ \\
+$a\ b$ \\
+$a\ \, b$ \\
+$a\enspace b$ \\ % 1/2 em
+$a\quad b$ \\ % 1 em (em: yaklaşık bir M harfi genişliği)
+$a\qquad b$ % 2 em
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent
+$a = 1, b = 2$ \\
+$a = 1,\, b = 2$ \\
+$a = 1$, $b = 2$ \\
+$a = 1,\ b = 2$
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent
+$\sqrt[3]{n}$, $\overline{A}$, $n \to \infty$, \%95, $3/2$, $3 \div 2$, $a \mid b$, \nicefrac{1}{2}, $\pi \approx \num{3,14}$, $\pm 1$, $\nabla f(x)$, $\|x\|$, $n$\textsuperscript{th}, $a \sim b$, $\partial f$, $\emptyset$, ...
+
+\newpage
+
+%%%%%%% SAYFA 2 %%%%%%%
+
+\[
+x \to \infty \text{ iken } f(x) \in O(g(x))
+\]
+
+\bigskip
+\hrule
+\bigskip
+
+\[
+\exists M > 0 \quad \exists x_0 \in \mathbb{R} \quad \forall x \geq x_0 \quad |f(x)| \leq M |g(x)|
+\]
+
+\bigskip
+\hrule
+\bigskip
+
+\[
+\frac{f(x) - f(x_0)}{x - x_0} = f'(c) \implies f(x) = f(x_0) + f'(c)(x - x_0)
+\]
+
+\bigskip
+\hrule
+\bigskip
+
+\begin{align*} 
+p_n(x)
+	& = f(x_0) + f'(x_0)(x - x_0) + \frac{f''(x_0)}{2!}(x - x_0)^2 + \cdots \\
+	& \qquad \cdots + \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n
+\end{align*}
+
+\newpage
+
+%%%%%%% SAYFA 3 %%%%%%%
+
+\lipsum[1][1-3]
+\[
+f(x) =
+\begin{cases}
+2(1 - x),	& 0 < x < 1 \\
+0,		& \text{aksi hâlde.} % buraya \\ koymak bir şey değiştirmiyor
+\end{cases}
+\]
+\lipsum[1][4-6]
+
+\bigskip
+\hrule
+\bigskip
+
+\[
+f(x) =
+\begin{cases} 
+x^2/3,	& -1 < x < 2 \\ 
+0,		& \text{aksi hâlde} 
+\end{cases}
+\]
+
+\[
+f(x) =
+\begin{cases} 
+\frac{x^2}{3},	& -1 < x < 2 \\ 
+0,			& \text{aksi hâlde} 
+\end{cases}
+\]
+
+\[
+f(x) =
+\begin{cases} 
+\displaystyle \frac{x^2}{3},	& -1 < x < 2 \\ 
+0,						& \text{aksi hâlde} 
+\end{cases}
+\]
+
+\[
+f(x) =
+\begin{dcases} 
+\frac{x^2}{3},	& -1 < x < 2 \\ 
+0,			& \text{aksi hâlde} 
+\end{dcases}
+\]
+
+\bigskip
+\hrule
+\bigskip
+
+\[
+f(x) =
+\begin{cases} 
+(x-1)/36,		& x \in \{2, 3, \dots, 7\} \\
+(13-x)/36,		& x \in \{8, 9, \dots, 12\} 
+\end{cases}
+\]
+
+\[
+f(x) =
+\begin{cases} 
+\frac{x - 1}{36},	& x \in \{2, 3, \dots, 7\} \\
+\frac{13 - x}{36},	& x \in \{8, 9, \dots, 12\} 
+\end{cases}
+\]
+
+\[
+f(x) =
+\begin{dcases} 
+\frac{x - 1}{36},	& x \in \{2, 3, \dots, 7\} \\
+\frac{13 - x}{36},	& x \in \{8, 9, \dots, 12\} 
+\end{dcases}
+\]
+
+\[
+f(x) =
+\begin{dcases} 
+\frac{x - 1}{36},	& x \in \{2, 3, \dots, 7\} \\[0.75 em]
+\frac{13 - x}{36},	& x \in \{8, 9, \dots, 12\} 
+\end{dcases}
+\]
+
+\newpage
+
+%%%%%%% SAYFA 4 %%%%%%%
+
+\lipsum[1][1-3]
+\[
+\begin{rcases}
+c_0 = y(0) = f(0) \\ 
+c_1 = y'(0) = f'(0) \\ 
+2 c_2 = y''(0) = f''(0)
+\end{rcases}
+\ \Rightarrow \enspace y = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2
+\]
+\lipsum[1][4-6]
+
+\newpage
+
+%%%%%%% SAYFA 5 %%%%%%%
+
+\[
+\int_0^1 x^2 dx
+\]
+
+\[
+\int_0^1 x^2\, dx 
+\]
+
+\[
+\int_0^1 x^2\ dx 
+\]
+
+% genel olarak dx'ten önce boşluk bırakmamayı tercih ediyoruz (bk. END 205 2022 Güz notlarında "Sayısal İntegral Alma" bölümü)
+
+\[
+\int_0^1 (x - 1)^2 dx
+\]
+
+\[
+\int_0^1 (x - 1)^2\ dx
+\]
+
+\[
+\int_1^4 \frac{1}{(x - 2)^{2/3}} dx
+\]
+
+\[
+\int_1^4 \frac{1}{(x - 2)^{2/3}}\ dx
+\]
+
+\bigskip
+\hrule
+\bigskip
+
+\[
+\int_0^1 e^{-x} dx = -e^{-x}|_0^1
+\]
+
+\[
+\int_0^1 e^{-x} dx = \left. -e^{-x} \right|_0^1
+\]
+
+\newpage
+
+%%%%%%% SAYFA 6 %%%%%%%
+
+\[
+\iint_R (2x - y^2) dA
+\]
+
+\[
+\iint_R (2x - y^2) \, dA
+\]
+
+\[
+\iint_R (2x - y^2) \ dA
+\]
+
+% yukarıdaki üç seçenek içinde ortadaki tercihe şayan (bk. Ortak Olasılık Dağılımları)
+
+\[
+\int_0^6 \int_{x/3}^2 x \sqrt{1 + y^3} dy dx
+\]
+
+\[
+\int_0^6 \int_{x/3}^2 x \sqrt{1 + y^3} \, dy dx
+\]
+
+\[
+\int_0^6 \int_{x/3}^2 x \sqrt{1 + y^3} \, dy \, dx
+\]
+
+% yukarıdaki üç seçenek içinde ortadakini kullandık (bk. Ortak Olasılık Dağılımları)
+
+\[
+\iint \limits_R (2x - y^2) \, dA % \limits sınırları integral işaretinin tam altına yazdırıyor
+\]
+
+\[
+\int \limits_0^6 \int \limits_{x/3}^2 x \sqrt{1 + y^3} \, dy \, dx
+\]
+
+\end{document}
